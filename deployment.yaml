@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: smarthr-service
+spec:
+  selector:
+    app: smarthr-app
+  ports:
+    - protocol: "TCP"
+      port: 8080
+      targetPort: 8080
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smarthr-app
+spec:
+  selector:
+    matchLabels:
+      app: smarthr-app
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: smarthr-app
+    spec:
+      containers:
+        - name: smarthr-app
+          image: smarthr-backend
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
