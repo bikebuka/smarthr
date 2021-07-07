@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
         - name: smarthr-app
-          image: smarthr-backend
+          image: paulodhiambo/smarthr:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
