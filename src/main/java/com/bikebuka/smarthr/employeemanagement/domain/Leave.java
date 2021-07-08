@@ -20,4 +20,7 @@ public class Leave {
     @ManyToOne
     @JoinColumn(name = "employee_id")
     private Employee employee;
+
+    @OneToOne
+    private LeaveDetail leaveDetail;
 }

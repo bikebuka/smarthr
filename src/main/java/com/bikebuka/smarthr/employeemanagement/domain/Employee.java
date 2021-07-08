@@ -20,7 +20,8 @@ public class Employee {
 
     private String firstName;
     private String surname;
-    private String phoneNumber;
+    @OneToOne
+    private Contact contact;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "employee")
     private Set<Insurance> insurance;
     @OneToOne
@@ -36,5 +37,19 @@ public class Employee {
     private OffsetDateTime birthDate;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "employee")
     private Set<Leave> leave;
+    private String imagePath;
+    private EmploymentType employmentType;
+    private EmploymentPosition employmentPosition;
+    private String staffNumber;
+    private String homeCountry;
+    private String nationality;
+    private Gender gender;
+    private String idNumber;
+    private String nhifNumber;
+    private String nssfNumber;
+    private String passportNumber;
+    private OffsetDateTime dateOfBirth;
+    private OffsetDateTime employmentDate;
+    private EmploymentStatus status;
 
 }
