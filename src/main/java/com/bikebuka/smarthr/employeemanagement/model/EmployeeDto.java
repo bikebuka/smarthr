@@ -33,7 +33,7 @@ public class EmployeeDto {
     private String primarySchoolGrade;
     private String resumeUrl;
     private String coverLetterUrl;
-    private String departmentId;
+    private Long departmentId;
     private Double hourlyRate;
     private OffsetDateTime birthDate;
     private String imagePath;

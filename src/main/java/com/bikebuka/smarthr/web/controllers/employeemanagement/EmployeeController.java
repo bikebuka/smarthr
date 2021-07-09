@@ -12,7 +12,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/employee")
+@RequestMapping("/api/employees")
 @AllArgsConstructor
 public class EmployeeController {
     private final EmployeeService service;
@@ -42,5 +42,10 @@ public class EmployeeController {
     public ResponseEntity<String> deleteEmployee(@PathVariable Long id) {
         service.deleteEmployee(id);
         return new ResponseEntity<>("Employee deleted successfully", HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity<Employee> getEmployeeByUserId(@RequestParam String id) {
+        return new ResponseEntity<>(service.getEmployeeByUserId(id), HttpStatus.OK);
     }
 }

@@ -32,13 +32,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee getEmployeeById(Long id) {
         return repository.findById(id)
-                .orElseThrow(IllegalStateException::new);
+                .orElseThrow(() -> new IllegalStateException("Employee with id " + id + " does not exist"));
     }
 
     @Override
     public void updateEmployee(Employee employee) {
         Employee databaseEmployee = repository.findById(employee.getId())
-                .orElseThrow(IllegalStateException::new);
+                .orElseThrow(() -> new IllegalStateException("Employee: " + employee + " does not exist"));
         if (databaseEmployee != null) {
             repository.save(employee);
             log.debug("Employee " + employee + " Saved");
@@ -48,7 +48,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee createEmployee(EmployeeDto employee) {
-        Department department = departmentRepository.findById(Long.valueOf(employee.getDepartmentId())).orElseThrow(IllegalStateException::new);
+        Department department = departmentRepository.findById(employee.getDepartmentId())
+                .orElseThrow(() -> new IllegalStateException("Department not found"));
         AcademicHistory history = academicHistoryRepository.save(new AcademicHistory(0L,
                 employee.getCollege(),
                 employee.getHighSchool(),
@@ -90,8 +91,16 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .surname(employee.getSurname())
                 .nextOfKin(null)
                 .build();
-
+        if (repository.findByIdNumber(employee1.getIdNumber()).isPresent()) {
+            throw new IllegalStateException("Employee with Nation Id " + employee1.getIdNumber() + " already exist");
+        }
         return repository.save(employee1);
+    }
+
+    @Override
+    public Employee getEmployeeByUserId(String id) {
+        return repository.findByUserId(Long.valueOf(id)).orElseThrow(() -> new IllegalStateException("Employee with user Id " + id + " does not exist"));
+
     }
 
     @Override
