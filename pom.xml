@@ -149,4 +149,12 @@
         </plugins>
     </build>
 
+    <distributionManagement>
+        <repository>
+            <id>internal.repo</id>
+            <name>Internal repo</name>
+            <url>file:///home/paulodhiambo/in</url>
+        </repository>
+    </distributionManagement>
+
 </project>
