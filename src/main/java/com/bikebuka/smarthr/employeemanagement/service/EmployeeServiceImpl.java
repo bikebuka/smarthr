@@ -21,13 +21,19 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee getEmployeeById(Long id) {
-        return repository.getById(id);
+        return repository.findById(id)
+                .orElseThrow(IllegalStateException::new);
     }
 
     @Override
     public void updateEmployee(Employee employee) {
-        Employee databaseEmployee = repository.findById(employee.getId()).get();
-        //Setters
+        Employee databaseEmployee = repository.findById(employee.getId())
+                .orElseThrow(IllegalStateException::new);
+        if (databaseEmployee != null) {
+            repository.save(employee);
+            log.debug("Employee " + employee + " Saved");
+        }
+
     }
 
     @Override
@@ -37,7 +43,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void deleteEmployee(Long id) {
-        Employee databaseEmployee = repository.findById(id).get();
+        Employee databaseEmployee = repository.findById(id)
+                .orElseThrow(IllegalStateException::new);
         repository.deleteById(databaseEmployee.getId());
     }
 }
