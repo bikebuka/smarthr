@@ -2,6 +2,7 @@ package com.bikebuka.smarthr.core.security.jwt;
 
 import com.bikebuka.smarthr.core.security.services.UserDetailsImpl;
 import io.jsonwebtoken.*;
+import io.jsonwebtoken.io.JacksonSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;

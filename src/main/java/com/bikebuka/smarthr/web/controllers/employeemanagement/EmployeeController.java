@@ -1,6 +1,7 @@
 package com.bikebuka.smarthr.web.controllers.employeemanagement;
 
 import com.bikebuka.smarthr.employeemanagement.domain.Employee;
+import com.bikebuka.smarthr.employeemanagement.model.EmployeeDto;
 import com.bikebuka.smarthr.employeemanagement.service.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,7 +23,7 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee) {
+    public ResponseEntity<Employee> createEmployee(@RequestBody EmployeeDto employee) {
         return new ResponseEntity<>(service.createEmployee(employee), HttpStatus.CREATED);
     }
 

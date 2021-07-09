@@ -26,6 +26,10 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public Department createDepartment(Department department) {
+        Department databaseDepartment = departmentRepository.findByName(department.getName());
+        if (databaseDepartment != null) {
+            throw new IllegalStateException("Department already exist");
+        }
         return departmentRepository.save(department);
     }
 

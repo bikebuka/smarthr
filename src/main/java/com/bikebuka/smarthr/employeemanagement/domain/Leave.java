@@ -12,6 +12,7 @@ import javax.persistence.*;
 @Entity
 public class Leave {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
     private String leaveName;

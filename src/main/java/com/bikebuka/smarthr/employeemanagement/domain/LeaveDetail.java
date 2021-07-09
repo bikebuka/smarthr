@@ -2,9 +2,7 @@ package com.bikebuka.smarthr.employeemanagement.domain;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.OffsetDateTime;
 
 @Getter
@@ -15,6 +13,7 @@ import java.time.OffsetDateTime;
 @Entity
 public class LeaveDetail {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
     private OffsetDateTime startDate;

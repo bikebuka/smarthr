@@ -17,6 +17,7 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
+    private Long userId;
 
     private String firstName;
     private String surname;
@@ -34,7 +35,6 @@ public class Employee {
     @OneToOne(cascade = CascadeType.REMOVE)
     private Department department;
     private Double hourlyRate;
-    private OffsetDateTime birthDate;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "employee")
     private Set<Leave> leave;
     private String imagePath;
